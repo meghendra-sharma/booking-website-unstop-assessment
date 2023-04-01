@@ -1,6 +1,7 @@
 const connectDB = require("./config/db");
 const dotenv = require('dotenv')
-const express = require('express')
+const express = require('express');
+const { errorHandler } = require("./middlewares/errorHandler");
 
 //configuring dotenv to access environment variables
 dotenv.config()
@@ -25,6 +26,10 @@ app.get('/' , (req,res) => {
 //adding router
 //router - coach
 app.use('/api/coach' , require('./routes/coachRoutes'))
+
+
+//error handler
+app.use(errorHandler)
 
 
 //making server listen to a particular PORT

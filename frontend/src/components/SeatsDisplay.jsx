@@ -11,9 +11,9 @@ function SeatsDisplay({coachDetails}) {
             <div className=''><MdChair className={coachDetails.seats[79] ? 'text-info-emphasis opacity-50' : 'text-info-emphasis'}/></div>
         </div>
         {new Array(11).fill(0).map((item,index1) => {
-        return <div className='row justify-content-around'>
+        return <div key={index1} className='row justify-content-around'>
           {new Array(7).fill(0).map((item,index2) => {
-            return <div className='col-1'><MdChair className={coachDetails.seats[index1*7 + index2] ? 'text-info-emphasis opacity-50' : 'text-info-emphasis'}/></div>
+            return <div key={index2} className='col-1'><MdChair className={coachDetails.seats[(10 - index1)*7 + index2] ? 'text-info-emphasis opacity-50' : 'text-info-emphasis'}/></div>
           })}
         </div>
       })}

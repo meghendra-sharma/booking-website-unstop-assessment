@@ -22,9 +22,9 @@ function BookingForm() {
       <h6 className='text-center fw-bold'>May I help you?</h6>
       <hr className='my-0 w-75 mx-auto' />
       <form className='text-center my-3' onSubmit={onSubmit}>
-      <div class="mb-3">
-            <label for="noOfSeats" class="form-label fw-bold"><small>No of Seats?</small></label>
-            <input onChange={onChange} value={noOfSeats} type="text" class="form-control text-center text-dark bg-secondary bg-opacity-25 rounded-0 opacity-50 fw-bold font-monospace w-75 mx-auto fs-6" id="noOfSeats" placeholder="Maximum 7"/>
+      <div className="mb-3">
+            <label htmlFor="noOfSeats" className="form-label fw-bold"><small>No of Seats?</small></label>
+            <input onChange={onChange} value={noOfSeats} type="text" className="form-control text-center text-dark bg-secondary bg-opacity-25 rounded-0 opacity-50 fw-bold font-monospace w-75 mx-auto fs-6" id="noOfSeats" placeholder="Maximum 7"/>
             
     </div>
     <button type='submit' className='btn btn-primary rounded fw-bold w-50'><small>Book</small></button>
