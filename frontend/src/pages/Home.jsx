@@ -5,6 +5,7 @@ import { getCoachDetails } from '../features/coach/coachSlice'
 import CoachInfo from '../components/CoachInfo'
 import BookingForm from '../components/BookingForm'
 import Message from '../components/Message'
+import ClearAll from '../components/ClearAll'
 
 
 function Home() {
@@ -15,7 +16,7 @@ function Home() {
 
     //getting data from the global state -- coach
     
-    const {loading , success , message , error , coachDetails} = useSelector(state => state.coach)
+    const {loading , error , coachDetails} = useSelector(state => state.coach)
     
     //fetching data on page load
     useEffect(() => {
@@ -34,7 +35,11 @@ function Home() {
         <div className='col-12 col-md-4'>
                 <BookingForm/>
         </div>
-      </div>}
+        <ClearAll/>
+      </div>
+      
+      }
+      
     </div>
   )
 }

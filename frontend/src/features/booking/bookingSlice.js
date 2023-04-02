@@ -2,6 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { getCoachDetails } from '../../features/coach/coachSlice'
 
+
+//getting the base url from .env file when this application runs in production
+const backendBaseURL = process.env.backendBaseURL ? process.env.backendBaseURL : ''
+  
+
 //initial state -- coach
 const initialState = {
   success : false,
@@ -24,7 +29,7 @@ export const bookSeats =  createAsyncThunk('booking/bookSeats' , async (noOfSeat
     try {
         //noOfSeats = Number(noOfSeats)
         //hitting backend API to book seats
-        const {data} = await axios.put(`api/coach/${_id}/book` , {noOfSeats : noOfSeats})
+        const {data} = await axios.put(`${backendBaseURL}/api/coach/${_id}/book` , {noOfSeats : noOfSeats})
         thunkAPI.dispatch(getCoachDetails())
         return data.seatNumbers
     } catch (error) {
