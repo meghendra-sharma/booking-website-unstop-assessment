@@ -19,6 +19,10 @@ const getCoachDetails = async (req,res , next) => {
 
         //sending json data in response that we got from the database
         res.json(coach)
+
+        
+
+        
     } catch (error) {
 
         //setting the status of resposne
@@ -38,19 +42,22 @@ const bookSeats = async(req,res,next) => {
     //getting data from the request body
     const {noOfSeats} = req.body
 
+
+    
+
     //getting data from the request URL
     //getting the id of the coach
     const {_id} = req.params 
 
     try {
-        const data = await Coach.find()
-        const coachDetails = data[0]
+        const coachDetails = await Coach.findById(_id)
+        //const coachDetails = data[0]
 
         //validating the input
         if(isValid(noOfSeats , coachDetails).isValid){
 
             //booking seats and getting seat numbers
-            const bookedSeats = bookSeatsUtility(noOfSeats , coachDetails)
+            const bookedSeats = bookSeatsUtility(Number(noOfSeats) , coachDetails)
 
             bookedSeats.map((item) => {
                 coachDetails.seats[item-1] = true
@@ -60,8 +67,8 @@ const bookSeats = async(req,res,next) => {
             const updatedCoachData = await Coach.findByIdAndUpdate(_id , 
                 {
                 seats : coachDetails.seats,
-                seatsBooked : coachDetails.seatsBooked + noOfSeats,
-                seatsAvailable : coachDetails.seatsAvailable - noOfSeats,
+                seatsBooked : coachDetails.seatsBooked + (Number(noOfSeats)),
+                seatsAvailable : coachDetails.seatsAvailable - (Number(noOfSeats)),
                 
             } )
 
@@ -103,9 +110,9 @@ const clearCoachBookings = async(req,res,next) => {
     }
 
     try {
-        const updatedCoachData = await Coach.findByIdAndUpdate(_id , coachData)
+        await Coach.findByIdAndUpdate(_id , coachData)
         res.status(201)
-        res.json({message : 'Success' , coachData : updatedCoachData})
+        res.json({message : 'Success'})
     } catch (error) {
         res.status(500)
         next(error)

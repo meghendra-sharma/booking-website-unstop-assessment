@@ -14,7 +14,7 @@ const initialState = {
 //thunk middleware
 //createAsyncThunk -- creates a thunk function and return thunk creator function
 //dispathes - pending , fulfilled and rejected
-export const getCoachDetails =  createAsyncThunk('coach/getDetails' , async () => {
+export const getCoachDetails =  createAsyncThunk('coach/getDetails' , async (_,thunkAPI) => {
 
     try {
 
@@ -22,7 +22,12 @@ export const getCoachDetails =  createAsyncThunk('coach/getDetails' , async () =
         const {data} = await axios.get('/api/coach')
         return data
     } catch (error) {
-        throw error
+
+        //getting error from the error 
+        const message = error.response ? error.response.data.message : error.request
+
+        //setting action.payload to message when thunk dispatch coach/getDetails/rejected action
+        return thunkAPI.rejectWithValue(message)
     }
 
 })

@@ -4,6 +4,7 @@ import Loader from '../components/Loader'
 import { getCoachDetails } from '../features/coach/coachSlice'
 import CoachInfo from '../components/CoachInfo'
 import BookingForm from '../components/BookingForm'
+import Message from '../components/Message'
 
 
 function Home() {
@@ -18,13 +19,15 @@ function Home() {
     
     //fetching data on page load
     useEffect(() => {
+
+      //dispatching thunk
       dispatch(getCoachDetails())
     },[dispatch])
 
 
   return (
     <div className='container'>
-      {loading ? <Loader/>  : <div className='row gy-3'>
+      {loading ? <Loader/>  : error ?  <Message type = 'danger' message = 'Something Went Wrong'/> : <div className='row gy-3'>
         <div className='col-12 col-md-8'>
                 <CoachInfo coachDetails={coachDetails}/>
         </div>
