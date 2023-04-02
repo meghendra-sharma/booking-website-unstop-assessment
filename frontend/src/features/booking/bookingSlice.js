@@ -4,7 +4,7 @@ import { getCoachDetails } from '../../features/coach/coachSlice'
 
 
 //getting the base url from .env file when this application runs in production
-const backendBaseURL = process.env.backendBaseURL ? process.env.backendBaseURL : ''
+const backendBaseURL = process.env.REACT_APP_BACKEND_BASE_URL ? process.env.REACT_APP_BACKEND_BASE_URL : ''
   
 
 //initial state -- coach
