@@ -4,7 +4,7 @@ import { reset } from '../booking/bookingSlice'
 
 
 //getting the base url from .env file when this application runs in production
-const backendBaseURL = process.env.REACT_APP_BACKEND_BASE_URL ? process.env.REACT_APP_BACKEND_BASE_URL : ''
+const backendBaseURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BACKEND_BASE_URL : ''
 
 //initial state -- coach
 const initialState = {
