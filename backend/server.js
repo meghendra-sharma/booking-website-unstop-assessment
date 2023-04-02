@@ -17,6 +17,9 @@ const app = express()
 app.use(express.json())
 
 
+//comment needs to be added
+app.use(cors())
+
 //Home route of the application
 app.get('/' , (req,res) => {
     res.send('API is up and running..')
