@@ -16,7 +16,7 @@ function Home() {
 
     //getting data from the global state -- coach
     
-    const {loading , error , coachDetails} = useSelector(state => state.coach)
+    const {loading , message ,  error , coachDetails} = useSelector(state => state.coach)
     
     //fetching data on page load
     useEffect(() => {
@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <div className='container'>
-      {loading ? <Loader/>  : error ?  <Message type = 'danger' message = 'Something Went Wrong'/> : <div className='row gy-3'>
+      {loading ? <Loader/>  : error ?  <Message type = 'danger' message = {message}/> : <div className='row gy-3'>
         <div className='col-12 col-md-8'>
                 <CoachInfo coachDetails={coachDetails}/>
         </div>

@@ -29,7 +29,7 @@ export const getCoachDetails =  createAsyncThunk('coach/getDetails' , async (_,t
     } catch (error) {
 
         //getting error from the error 
-        const message = error.response ? error.response.data.message : error.request
+        const message = error.response ? error.response.data.message : error.message
 
         //setting action.payload to message when thunk dispatch coach/getDetails/rejected action
         return thunkAPI.rejectWithValue(message)
